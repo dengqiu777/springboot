@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.VueRoleMapper">
+  <resultMap id="BaseResultMap" type="com.example.entity.VueRole">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="role_name" jdbcType="VARCHAR" property="roleName" />
+    <result column="role_sequence" jdbcType="VARCHAR" property="roleSequence" />
+    <result column="role_status" jdbcType="INTEGER" property="roleStatus" />
+    <result column="role_type" jdbcType="INTEGER" property="roleType" />
+    <result column="role_summary" jdbcType="VARCHAR" property="roleSummary" />
+    <result column="role_super" jdbcType="INTEGER" property="roleSuper" />
+    <result column="role_remark" jdbcType="VARCHAR" property="roleRemark" />
+    <result column="role_addtime" jdbcType="TIMESTAMP" property="roleAddtime" />
+    <result column="role_addip" jdbcType="VARCHAR" property="roleAddip" />
+    <result column="channel" jdbcType="VARCHAR" property="channel" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.example.entity.VueRole">
+    <result column="role_purview" jdbcType="LONGVARCHAR" property="rolePurview" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, role_name, role_sequence, role_status, role_type, role_summary, role_super, role_remark, 
+    role_addtime, role_addip, channel
+  </sql>
+  <sql id="Blob_Column_List">
+    role_purview
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from vue_role
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from vue_role
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.entity.VueRole">
+    insert into vue_role (id, role_name, role_sequence, 
+      role_status, role_type, role_summary, 
+      role_super, role_remark, role_addtime, 
+      role_addip, channel, role_purview
+      )
+    values (#{id,jdbcType=INTEGER}, #{roleName,jdbcType=VARCHAR}, #{roleSequence,jdbcType=VARCHAR}, 
+      #{roleStatus,jdbcType=INTEGER}, #{roleType,jdbcType=INTEGER}, #{roleSummary,jdbcType=VARCHAR}, 
+      #{roleSuper,jdbcType=INTEGER}, #{roleRemark,jdbcType=VARCHAR}, #{roleAddtime,jdbcType=TIMESTAMP}, 
+      #{roleAddip,jdbcType=VARCHAR}, #{channel,jdbcType=VARCHAR}, #{rolePurview,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.entity.VueRole">
+    insert into vue_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="roleName != null">
+        role_name,
+      </if>
+      <if test="roleSequence != null">
+        role_sequence,
+      </if>
+      <if test="roleStatus != null">
+        role_status,
+      </if>
+      <if test="roleType != null">
+        role_type,
+      </if>
+      <if test="roleSummary != null">
+        role_summary,
+      </if>
+      <if test="roleSuper != null">
+        role_super,
+      </if>
+      <if test="roleRemark != null">
+        role_remark,
+      </if>
+      <if test="roleAddtime != null">
+        role_addtime,
+      </if>
+      <if test="roleAddip != null">
+        role_addip,
+      </if>
+      <if test="channel != null">
+        channel,
+      </if>
+      <if test="rolePurview != null">
+        role_purview,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="roleName != null">
+        #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="roleSequence != null">
+        #{roleSequence,jdbcType=VARCHAR},
+      </if>
+      <if test="roleStatus != null">
+        #{roleStatus,jdbcType=INTEGER},
+      </if>
+      <if test="roleType != null">
+        #{roleType,jdbcType=INTEGER},
+      </if>
+      <if test="roleSummary != null">
+        #{roleSummary,jdbcType=VARCHAR},
+      </if>
+      <if test="roleSuper != null">
+        #{roleSuper,jdbcType=INTEGER},
+      </if>
+      <if test="roleRemark != null">
+        #{roleRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="roleAddtime != null">
+        #{roleAddtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="roleAddip != null">
+        #{roleAddip,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null">
+        #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="rolePurview != null">
+        #{rolePurview,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.entity.VueRole">
+    update vue_role
+    <set>
+      <if test="roleName != null">
+        role_name = #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="roleSequence != null">
+        role_sequence = #{roleSequence,jdbcType=VARCHAR},
+      </if>
+      <if test="roleStatus != null">
+        role_status = #{roleStatus,jdbcType=INTEGER},
+      </if>
+      <if test="roleType != null">
+        role_type = #{roleType,jdbcType=INTEGER},
+      </if>
+      <if test="roleSummary != null">
+        role_summary = #{roleSummary,jdbcType=VARCHAR},
+      </if>
+      <if test="roleSuper != null">
+        role_super = #{roleSuper,jdbcType=INTEGER},
+      </if>
+      <if test="roleRemark != null">
+        role_remark = #{roleRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="roleAddtime != null">
+        role_addtime = #{roleAddtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="roleAddip != null">
+        role_addip = #{roleAddip,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null">
+        channel = #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="rolePurview != null">
+        role_purview = #{rolePurview,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.example.entity.VueRole">
+    update vue_role
+    set role_name = #{roleName,jdbcType=VARCHAR},
+      role_sequence = #{roleSequence,jdbcType=VARCHAR},
+      role_status = #{roleStatus,jdbcType=INTEGER},
+      role_type = #{roleType,jdbcType=INTEGER},
+      role_summary = #{roleSummary,jdbcType=VARCHAR},
+      role_super = #{roleSuper,jdbcType=INTEGER},
+      role_remark = #{roleRemark,jdbcType=VARCHAR},
+      role_addtime = #{roleAddtime,jdbcType=TIMESTAMP},
+      role_addip = #{roleAddip,jdbcType=VARCHAR},
+      channel = #{channel,jdbcType=VARCHAR},
+      role_purview = #{rolePurview,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.entity.VueRole">
+    update vue_role
+    set role_name = #{roleName,jdbcType=VARCHAR},
+      role_sequence = #{roleSequence,jdbcType=VARCHAR},
+      role_status = #{roleStatus,jdbcType=INTEGER},
+      role_type = #{roleType,jdbcType=INTEGER},
+      role_summary = #{roleSummary,jdbcType=VARCHAR},
+      role_super = #{roleSuper,jdbcType=INTEGER},
+      role_remark = #{roleRemark,jdbcType=VARCHAR},
+      role_addtime = #{roleAddtime,jdbcType=TIMESTAMP},
+      role_addip = #{roleAddip,jdbcType=VARCHAR},
+      channel = #{channel,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+</mapper>

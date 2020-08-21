@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.UsersMapper">
+  <resultMap id="BaseResultMap" type="com.example.entity.Users">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="age" jdbcType="VARCHAR" property="age" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="addr" jdbcType="VARCHAR" property="addr" />
+    <result column="birth" jdbcType="VARCHAR" property="birth" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="channel" jdbcType="VARCHAR" property="channel" />
+    <result column="is_delete" jdbcType="INTEGER" property="isDelete" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from users
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.entity.Users">
+    insert into users (id, `name`, age, 
+      sex, addr, birth, create_time, 
+      update_time, channel, is_delete
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{age,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=VARCHAR}, #{addr,jdbcType=VARCHAR}, #{birth,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{channel,jdbcType=VARCHAR}, #{isDelete,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.example.entity.Users">
+    update users
+    set `name` = #{name,jdbcType=VARCHAR},
+      age = #{age,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      addr = #{addr,jdbcType=VARCHAR},
+      birth = #{birth,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      channel = #{channel,jdbcType=VARCHAR},
+      is_delete = #{isDelete,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, `name`, age, sex, addr, birth, create_time, update_time, channel, is_delete
+    from users
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, `name`, age, sex, addr, birth, create_time, update_time, channel, is_delete
+    from users
+  </select>
+
+
+  <select id="getUserList" resultMap="BaseResultMap" parameterType="map">
+    select
+    *
+    from users
+    where is_delete = 0
+    <if test="name != null and name != ''">
+      and name like CONCAT('%', #{name}, '%')
+    </if>
+  </select>
+
+  <update id="deleteById"  parameterType = "java.util.List">
+    update users
+    set is_delete = 1
+    where 1>2
+    or id in  (${ids})
+  </update>
+
+  <select id="getIndexInfo" resultMap="BaseResultMap" parameterType="map">
+      SELECT SUM(r1.age) age,SUM(r1.sex) sex ,DATE_FORMAT(r1.create_time,'%m-%d')
+      createTime
+      FROM users r1 WHERE r1.is_delete=0
+      <if test="channel!=null and channel!=''">
+        AND r1.channel=#{channel}
+      </if>
+      <if test="startTime!=null and startTime!=''">
+        <![CDATA[  AND DATE_FORMAT(r1.create_time,'%Y-%m-%d') >= #{startTime} ]]>
+      </if>
+      <if test="endTime!=null and endTime!=''">
+        <![CDATA[  AND DATE_FORMAT(r1.create_time,'%Y-%m-%d') <= #{endTime} ]]>
+      </if>
+      GROUP BY DATE_FORMAT(r1.create_time,'%Y-%m-%d')
+  </select>
+
+</mapper>

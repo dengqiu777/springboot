@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.VueUserTokenMapper">
+    <select id="selectUserToken" parameterType="Map" resultMap="BaseResultMap">
+        SELECT * FROM vue_user_token r1 WHERE r1.is_delete=0
+        <if test="userId!=null and userId!=''">
+            AND r1.user_id=#{userId}
+        </if>
+        <if test="token!=null and token!=''">
+            AND r1.token=#{token}
+        </if>
+        <if test="expireTime !=null and expireTime !=''">
+            <![CDATA[ AND r1.expire_time> #{expireTime}]]>
+        </if>
+    </select>
+</mapper>

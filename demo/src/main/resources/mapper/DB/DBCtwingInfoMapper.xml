@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.CtwingInfoMapper">
+
+  <select id="getCtwingInfoList" resultMap="BaseResultMap" parameterType="map">
+    select
+    *
+    from ctwing_info
+    where 0 = 0
+    <if test="deviceId != null and deviceId  != ''">
+      and device_id =#{deviceId}
+    </if>
+  </select>
+
+</mapper>

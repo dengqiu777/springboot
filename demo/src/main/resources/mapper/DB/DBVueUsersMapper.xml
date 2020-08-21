@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.VueUsersMapper">
+
+  <select id="selectByName" parameterType="Map" resultMap="BaseResultMap">
+    select id, login_name, `password`, salt, role_id, add_time, last_time, last_login_ip, 
+    fail_login_num, `status`, `name`, introduction, org_ky, mobile, phone, email, address, 
+    channel, is_delete
+    from vue_users r1
+    where is_delete=0
+    <if test="login_name !=null and login_name !=''">
+      AND r1.login_name=#{login_name}
+    </if>
+  </select>
+
+    <select id="selectByToken" parameterType="Map" resultMap="BaseResultMap">
+        SELECT r1.* FROM vue_users r1
+        INNER JOIN vue_user_token r2 ON r1.id=r2.user_id
+        WHERE r2.is_delete=0
+        AND r2.token=#{token}
+        <if test="expireTime !=null and expireTime !=''">
+            <![CDATA[ AND r2.expire_time> #{expireTime}]]>
+        </if>
+    </select>
+
+</mapper>

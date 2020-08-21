@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.CtwingInfoMapper">
+  <resultMap id="BaseResultMap" type="com.example.entity.CtwingInfo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="device_id" jdbcType="VARCHAR" property="deviceId" />
+    <result column="imei" jdbcType="VARCHAR" property="imei" />
+    <result column="imsi" jdbcType="VARCHAR" property="imsi" />
+    <result column="tenant_id" jdbcType="VARCHAR" property="tenantId" />
+    <result column="product_id" jdbcType="VARCHAR" property="productId" />
+    <result column="device_type" jdbcType="VARCHAR" property="deviceType" />
+    <result column="assoc_assetId" jdbcType="VARCHAR" property="assocAssetid" />
+    <result column="up_packet_sn" jdbcType="INTEGER" property="upPacketSn" />
+    <result column="up_data_sn" jdbcType="INTEGER" property="upDataSn" />
+    <result column="protocol" jdbcType="VARCHAR" property="protocol" />
+    <result column="rsrp" jdbcType="INTEGER" property="rsrp" />
+    <result column="sinr" jdbcType="INTEGER" property="sinr" />
+    <result column="pci" jdbcType="INTEGER" property="pci" />
+    <result column="ecl" jdbcType="INTEGER" property="ecl" />
+    <result column="cell_id" jdbcType="INTEGER" property="cellId" />
+    <result column="latitude" jdbcType="INTEGER" property="latitude" />
+    <result column="longitude" jdbcType="INTEGER" property="longitude" />
+    <result column="altitude" jdbcType="INTEGER" property="altitude" />
+    <result column="addresss" jdbcType="VARCHAR" property="addresss" />
+    <result column="battery_vol" jdbcType="INTEGER" property="batteryVol" />
+    <result column="wifi_mac" jdbcType="VARCHAR" property="wifiMac" />
+    <result column="sleep_time" jdbcType="INTEGER" property="sleepTime" />
+    <result column="wakeup_time" jdbcType="VARCHAR" property="wakeupTime" />
+    <result column="online" jdbcType="VARCHAR" property="online" />
+    <result column="remake" jdbcType="VARCHAR" property="remake" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="is_delete" jdbcType="INTEGER" property="isDelete" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, device_id, imei, imsi, tenant_id, product_id, device_type, assoc_assetId, up_packet_sn, 
+    up_data_sn, protocol, rsrp, sinr, pci, ecl, cell_id, latitude, longitude, altitude, 
+    addresss, battery_vol, wifi_mac, sleep_time, wakeup_time, `online`, remake, create_time, 
+    update_time, is_delete
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ctwing_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ctwing_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.entity.CtwingInfo">
+    insert into ctwing_info (id, device_id, imei, 
+      imsi, tenant_id, product_id, 
+      device_type, assoc_assetId, up_packet_sn, 
+      up_data_sn, protocol, rsrp, 
+      sinr, pci, ecl, cell_id, 
+      latitude, longitude, altitude, 
+      addresss, battery_vol, wifi_mac, 
+      sleep_time, wakeup_time, `online`, 
+      remake, create_time, update_time, 
+      is_delete)
+    values (#{id,jdbcType=INTEGER}, #{deviceId,jdbcType=VARCHAR}, #{imei,jdbcType=VARCHAR}, 
+      #{imsi,jdbcType=VARCHAR}, #{tenantId,jdbcType=VARCHAR}, #{productId,jdbcType=VARCHAR}, 
+      #{deviceType,jdbcType=VARCHAR}, #{assocAssetid,jdbcType=VARCHAR}, #{upPacketSn,jdbcType=INTEGER}, 
+      #{upDataSn,jdbcType=INTEGER}, #{protocol,jdbcType=VARCHAR}, #{rsrp,jdbcType=INTEGER}, 
+      #{sinr,jdbcType=INTEGER}, #{pci,jdbcType=INTEGER}, #{ecl,jdbcType=INTEGER}, #{cellId,jdbcType=INTEGER}, 
+      #{latitude,jdbcType=INTEGER}, #{longitude,jdbcType=INTEGER}, #{altitude,jdbcType=INTEGER}, 
+      #{addresss,jdbcType=VARCHAR}, #{batteryVol,jdbcType=INTEGER}, #{wifiMac,jdbcType=VARCHAR}, 
+      #{sleepTime,jdbcType=INTEGER}, #{wakeupTime,jdbcType=VARCHAR}, #{online,jdbcType=VARCHAR}, 
+      #{remake,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{isDelete,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.entity.CtwingInfo">
+    insert into ctwing_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="deviceId != null">
+        device_id,
+      </if>
+      <if test="imei != null">
+        imei,
+      </if>
+      <if test="imsi != null">
+        imsi,
+      </if>
+      <if test="tenantId != null">
+        tenant_id,
+      </if>
+      <if test="productId != null">
+        product_id,
+      </if>
+      <if test="deviceType != null">
+        device_type,
+      </if>
+      <if test="assocAssetid != null">
+        assoc_assetId,
+      </if>
+      <if test="upPacketSn != null">
+        up_packet_sn,
+      </if>
+      <if test="upDataSn != null">
+        up_data_sn,
+      </if>
+      <if test="protocol != null">
+        protocol,
+      </if>
+      <if test="rsrp != null">
+        rsrp,
+      </if>
+      <if test="sinr != null">
+        sinr,
+      </if>
+      <if test="pci != null">
+        pci,
+      </if>
+      <if test="ecl != null">
+        ecl,
+      </if>
+      <if test="cellId != null">
+        cell_id,
+      </if>
+      <if test="latitude != null">
+        latitude,
+      </if>
+      <if test="longitude != null">
+        longitude,
+      </if>
+      <if test="altitude != null">
+        altitude,
+      </if>
+      <if test="addresss != null">
+        addresss,
+      </if>
+      <if test="batteryVol != null">
+        battery_vol,
+      </if>
+      <if test="wifiMac != null">
+        wifi_mac,
+      </if>
+      <if test="sleepTime != null">
+        sleep_time,
+      </if>
+      <if test="wakeupTime != null">
+        wakeup_time,
+      </if>
+      <if test="online != null">
+        `online`,
+      </if>
+      <if test="remake != null">
+        remake,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="deviceId != null">
+        #{deviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="imei != null">
+        #{imei,jdbcType=VARCHAR},
+      </if>
+      <if test="imsi != null">
+        #{imsi,jdbcType=VARCHAR},
+      </if>
+      <if test="tenantId != null">
+        #{tenantId,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceType != null">
+        #{deviceType,jdbcType=VARCHAR},
+      </if>
+      <if test="assocAssetid != null">
+        #{assocAssetid,jdbcType=VARCHAR},
+      </if>
+      <if test="upPacketSn != null">
+        #{upPacketSn,jdbcType=INTEGER},
+      </if>
+      <if test="upDataSn != null">
+        #{upDataSn,jdbcType=INTEGER},
+      </if>
+      <if test="protocol != null">
+        #{protocol,jdbcType=VARCHAR},
+      </if>
+      <if test="rsrp != null">
+        #{rsrp,jdbcType=INTEGER},
+      </if>
+      <if test="sinr != null">
+        #{sinr,jdbcType=INTEGER},
+      </if>
+      <if test="pci != null">
+        #{pci,jdbcType=INTEGER},
+      </if>
+      <if test="ecl != null">
+        #{ecl,jdbcType=INTEGER},
+      </if>
+      <if test="cellId != null">
+        #{cellId,jdbcType=INTEGER},
+      </if>
+      <if test="latitude != null">
+        #{latitude,jdbcType=INTEGER},
+      </if>
+      <if test="longitude != null">
+        #{longitude,jdbcType=INTEGER},
+      </if>
+      <if test="altitude != null">
+        #{altitude,jdbcType=INTEGER},
+      </if>
+      <if test="addresss != null">
+        #{addresss,jdbcType=VARCHAR},
+      </if>
+      <if test="batteryVol != null">
+        #{batteryVol,jdbcType=INTEGER},
+      </if>
+      <if test="wifiMac != null">
+        #{wifiMac,jdbcType=VARCHAR},
+      </if>
+      <if test="sleepTime != null">
+        #{sleepTime,jdbcType=INTEGER},
+      </if>
+      <if test="wakeupTime != null">
+        #{wakeupTime,jdbcType=VARCHAR},
+      </if>
+      <if test="online != null">
+        #{online,jdbcType=VARCHAR},
+      </if>
+      <if test="remake != null">
+        #{remake,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.entity.CtwingInfo">
+    update ctwing_info
+    <set>
+      <if test="deviceId != null">
+        device_id = #{deviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="imei != null">
+        imei = #{imei,jdbcType=VARCHAR},
+      </if>
+      <if test="imsi != null">
+        imsi = #{imsi,jdbcType=VARCHAR},
+      </if>
+      <if test="tenantId != null">
+        tenant_id = #{tenantId,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null">
+        product_id = #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceType != null">
+        device_type = #{deviceType,jdbcType=VARCHAR},
+      </if>
+      <if test="assocAssetid != null">
+        assoc_assetId = #{assocAssetid,jdbcType=VARCHAR},
+      </if>
+      <if test="upPacketSn != null">
+        up_packet_sn = #{upPacketSn,jdbcType=INTEGER},
+      </if>
+      <if test="upDataSn != null">
+        up_data_sn = #{upDataSn,jdbcType=INTEGER},
+      </if>
+      <if test="protocol != null">
+        protocol = #{protocol,jdbcType=VARCHAR},
+      </if>
+      <if test="rsrp != null">
+        rsrp = #{rsrp,jdbcType=INTEGER},
+      </if>
+      <if test="sinr != null">
+        sinr = #{sinr,jdbcType=INTEGER},
+      </if>
+      <if test="pci != null">
+        pci = #{pci,jdbcType=INTEGER},
+      </if>
+      <if test="ecl != null">
+        ecl = #{ecl,jdbcType=INTEGER},
+      </if>
+      <if test="cellId != null">
+        cell_id = #{cellId,jdbcType=INTEGER},
+      </if>
+      <if test="latitude != null">
+        latitude = #{latitude,jdbcType=INTEGER},
+      </if>
+      <if test="longitude != null">
+        longitude = #{longitude,jdbcType=INTEGER},
+      </if>
+      <if test="altitude != null">
+        altitude = #{altitude,jdbcType=INTEGER},
+      </if>
+      <if test="addresss != null">
+        addresss = #{addresss,jdbcType=VARCHAR},
+      </if>
+      <if test="batteryVol != null">
+        battery_vol = #{batteryVol,jdbcType=INTEGER},
+      </if>
+      <if test="wifiMac != null">
+        wifi_mac = #{wifiMac,jdbcType=VARCHAR},
+      </if>
+      <if test="sleepTime != null">
+        sleep_time = #{sleepTime,jdbcType=INTEGER},
+      </if>
+      <if test="wakeupTime != null">
+        wakeup_time = #{wakeupTime,jdbcType=VARCHAR},
+      </if>
+      <if test="online != null">
+        `online` = #{online,jdbcType=VARCHAR},
+      </if>
+      <if test="remake != null">
+        remake = #{remake,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.entity.CtwingInfo">
+    update ctwing_info
+    set device_id = #{deviceId,jdbcType=VARCHAR},
+      imei = #{imei,jdbcType=VARCHAR},
+      imsi = #{imsi,jdbcType=VARCHAR},
+      tenant_id = #{tenantId,jdbcType=VARCHAR},
+      product_id = #{productId,jdbcType=VARCHAR},
+      device_type = #{deviceType,jdbcType=VARCHAR},
+      assoc_assetId = #{assocAssetid,jdbcType=VARCHAR},
+      up_packet_sn = #{upPacketSn,jdbcType=INTEGER},
+      up_data_sn = #{upDataSn,jdbcType=INTEGER},
+      protocol = #{protocol,jdbcType=VARCHAR},
+      rsrp = #{rsrp,jdbcType=INTEGER},
+      sinr = #{sinr,jdbcType=INTEGER},
+      pci = #{pci,jdbcType=INTEGER},
+      ecl = #{ecl,jdbcType=INTEGER},
+      cell_id = #{cellId,jdbcType=INTEGER},
+      latitude = #{latitude,jdbcType=INTEGER},
+      longitude = #{longitude,jdbcType=INTEGER},
+      altitude = #{altitude,jdbcType=INTEGER},
+      addresss = #{addresss,jdbcType=VARCHAR},
+      battery_vol = #{batteryVol,jdbcType=INTEGER},
+      wifi_mac = #{wifiMac,jdbcType=VARCHAR},
+      sleep_time = #{sleepTime,jdbcType=INTEGER},
+      wakeup_time = #{wakeupTime,jdbcType=VARCHAR},
+      `online` = #{online,jdbcType=VARCHAR},
+      remake = #{remake,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      is_delete = #{isDelete,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

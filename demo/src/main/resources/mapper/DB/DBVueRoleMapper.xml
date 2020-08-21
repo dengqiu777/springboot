@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.VueRoleMapper">
+    <select id="selectUserRoleByToken" resultType="map" parameterType="map">
+        SELECT r3.role_name,r1.`name`,r1.introduction FROM `vue_users` r1
+        INNER JOIN vue_role r3 on r1.role_id=r3.id
+        INNER JOIN vue_user_token r4 on r4.user_id=r1.id
+        WHERE r1.is_delete=0
+        <if test="channel!=null and channel !=''">
+            AND r1.channel=#{channel}
+        </if>
+        AND r4.token=#{token}
+    </select>
+</mapper>
